@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="admin">
+    <meta name="author" content="jcala">
+
+    <title>admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/sb-admin.min.css" rel="stylesheet">
+    <link href="/css/editormd.min.css" rel="stylesheet"/>
+    <link href="/css/bootstrap-tagsinput.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/morris.js/0.4.3/morris.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">后台管理</a>
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+
+                <li><a href="/admin/blog"><i class="fa fa-plus"></i> Add Blog</a></li>
+                <li><a href="/admin/blogs"><i class="fa fa-list"></i> Blog List</a></li>
+                <li><a href="/admin/project"><i class="fa fa-calendar"></i> Project</a></li>
+                <li><a href="/admin/info"><i class="fa fa-user"></i> Info</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>admin<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/logout"><i class="fa fa-power-off"></i> Log Out</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+<div id="page-wrapper">
+    <div class="row">
+    <div class="col-lg-12">
+        <h1>Project</h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/"><i class="fa fa-dashboard"></i>Monitor</a></li>
+            <li class="active"><i class="fa fa-table"></i>open source</li>
+        </ol>
+        <button class="btn btn-default btn-lg" id="add_project"><i class="fa fa-plus"></i> <span class="network-name">Add project</span></button>
+        <br><br><br>
+    </div>
+   </div><!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>address</th>
+                    <th>operation</th></tr>
+                </thead>
+                <tbody>
+                <tr  th:each="item : ${projects}">
+                    <td th:text="${item.name}">Onions</td>
+                    <td th:text="${item.url}">Onions</td>
+                    <td>
+                        <a href='javascript:void(0)'><i class="fa fa-pencil upd_project" name="${item.Id}"></i></a>
+                        <a class="delete" role="button" href="/admin/delete/${item.Vid}"  data-title="Delete this blog!" data-confirm-button="Yes">
+                            <i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div><!-- /.row -->
+</div><!-- /#page-wrapper -->
+</div><!-- /#wrapper -->
+
+<!-- JavaScript -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="/js/jquery.confirm.min.js"></script>
+<script src="/js/jcala-form.min.js"></script>
+<script type="text/javascript">
+    $(".delete").confirm();
+</script>
+</body>
+</html>
